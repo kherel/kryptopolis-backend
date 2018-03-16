@@ -1,0 +1,164 @@
+[
+	{
+		"source": "https://tokenmarket.net/blockchain/ethereum/assets/amlt-by-coinfirm/",
+		"logo": "https://tokenmarket.net/blockchain/ethereum/assets/amlt-by-coinfirm/logo_big.png",
+		"title": "AMLT by Coinfirm",
+		"video": "https://youtube.com/embed/WqNMiR-bgZE",
+		"description": "The token of compliance",
+		"overview": {
+			"Symbol": "AMLT",
+			"Status": "Trading",
+			"Token sale opening date": "12. Dec 2017",
+			"Token sale closing date": "30. Jan 2018",
+			"Concept": "Created by the recognized Blockchain Regtech leader Coinfirm, AMLT is the first dedicated token that will ensure transparency and democratization of the financial system by allowing market participants to help determine the potential risk of others."
+		},
+		"articles": [
+			{
+				"title": "Why Blockchain Projects Struggle To Work With Banks",
+				"url": "http://www.ibtimes.com/why-blockchain-projects-struggle-work-banks-2608226"
+			},
+			{
+				"title": "Coinfirm Provides First Ethereum and ICO Anti-Money Laundering Analysis Capability - Press Release - Digital Journal",
+				"url": "http://www.digitaljournal.com/pr/3524203#ixzz4vr9xIm1ehttp://www.digitaljournal.com/pr/3524203"
+			}
+		],
+		"team": {
+			"Members": "Pawel Kuskowski -  CEO & Founder\n          \n                  \n            Pawel Aleksander -  CIO & Co-founder\n          \n                  \n            Jakub Fijolek -  CTO & Co-founder\n          \n                  \n            Grant Blaisdell -  CMO & Co-founder\n          \n                  \n            Maciej Ziólkowski -  Co-founder",
+			"Country of origin": "(data missing)"
+		},
+		"technology": {
+			"Blockchain": "Ethereum"
+		},
+		"legal": {},
+		"github": "https://github.com/300cubits",
+		"links": [
+			{
+				"title": "Website",
+				"url": "https://300cubits.tech/"
+			},
+			{
+				"title": "Blog",
+				"url": "https://medium.com/@300cubits"
+			},
+			{
+				"title": "Whitepaper",
+				"url": "https://300cubits.tech/pdf/whitepaper.pdf"
+			},
+			{
+				"title": "Facebook",
+				"url": "https://www.facebook.com/300cubits.tech"
+			},
+			{
+				"title": "Twitter",
+				"url": "https://twitter.com/300cubits_tech"
+			},
+			{
+				"title": "Slack chat",
+				"url": "https://cubits.herokuapp.com/"
+			},
+			{
+				"title": "Github",
+				"url": "https://github.com/300cubits"
+			}
+		],
+		"local": "amlt-by-coinfirm.png"
+	},
+
+	{
+		"source": "https://tokenmarket.net/blockchain/zcash/assets/zcash/",
+		"logo": "https://tokenmarket.net/blockchain/zcash/assets/zcash/logo_big.png",
+		"title": "Zcash",
+		"video": "https://youtube.com/embed/M7CMU5OMEgE",
+		"description": "Cryptocurrency with groundbreaking privacy",
+		"overview": {
+			"Symbol": "ZCASH",
+			"Status": "Trading",
+			"Concept": "Zcash is a decentralized and open-source cryptocurrency that offers privacy and selective transparency of transactions using advanced cryptography. Zcash payments are published on a public blockchain, but the sender, recipient, and amount of a transaction remain private.",
+			"Token sale opening date": "12. Dec 2017",
+			"Token sale closing date": "30. Jan 2018"
+		},
+		"articles": [
+			{
+				"title": "Zcash analysis by TokenMarket",
+				"url": "https://tokenmarket.net/blockchain/zcash/assets/zcash/insight"
+			},
+			{
+				"title": "Archive.org Secures More BCH Than BTC Donations in 2017",
+				"url": "https://cointelegraph.com/news/archiveorg-secures-more-bch-than-btc-donations-in-2017"
+			},
+			{
+				"title": "Internet Archive Now Accepts Bitcoin Cash and Zcash as Donations",
+				"url": "https://cointelegraph.com/news/internet-archive-now-accepts-bitcoin-cash-and-zcash-as-donations"
+			},
+			{
+				"title": "How to Protect Yourself From the CryptoShuffle Trojan",
+				"url": "https://cointelegraph.com/news/how-to-protect-yourself-from-the-cryptoshuffle-trojan"
+			},
+			{
+				"title": "Cryptoshuffler Proves Bitcoin Owners Susceptible to Malware, Steals $150,000",
+				"url": "https://cointelegraph.com/news/cryptoshuffler-proves-bitcoin-owners-susceptible-to-malware-steals-150000"
+			},
+			{
+				"title": "Future of Digital Currency May Not Involve Blockchains",
+				"url": "https://cointelegraph.com/news/future-of-digital-currency-may-not-involve-blockchains"
+			},
+			{
+				"title": "Is Zcash mining profitable?",
+				"url": "https://www.investitin.com/zcash-mining/"
+			},
+			{
+				"title": "Despite Korean 'Ban', Bithumb Adds Zcash",
+				"url": "https://cointelegraph.com/news/despite-korean-ban-bithumb-adds-zcash"
+			},
+			{
+				"title": "Ethereum’s Ropsten Testnet Verifies zkSNARKs Component Of Zcash Transaction",
+				"url": "https://www.ethnews.com/ethereums-ropsten-testnet-verifies-zksnarks-component-of-zcash-transaction"
+			},
+			{
+				"title": "Altcoins Use Bitcoin Ecosystem to Leapfrog Forward, Grow Faster",
+				"url": "https://cointelegraph.com/news/altcoins-use-bitcoin-ecosystem-to-leapfrog-forward-grow-faster"
+			},
+			{
+				"title": "Internet is Communication Platform While Blockchain is Organization Tool: Opinion",
+				"url": "https://cointelegraph.com/news/internet-is-communication-platform-while-blockchain-is-organization-tool-opinion"
+			}
+		],
+		"team": {
+			"Members": "Zooko Wilcox -  Founder and CEO",
+			"Country of origin": "USA"
+		},
+		"technology": {
+			"Blockchain": "Zcash"
+		},
+		"legal": {},
+		"github": "https://github.com/zcash",
+		"links": [
+			{
+				"title": "Website",
+				"url": "https://z.cash/"
+			},
+			{
+				"title": "Blog",
+				"url": "https://z.cash/blog/"
+			},
+			{
+				"title": "Whitepaper",
+				"url": "https://eprint.iacr.org/2015/675.pdf"
+			},
+			{
+				"title": "Twitter",
+				"url": "https://twitter.com/zcashco"
+			},
+			{
+				"title": "Slack chat",
+				"url": "https://zcashcommunity.slack.com"
+			},
+			{
+				"title": "Github",
+				"url": "https://github.com/zcash"
+			}
+		],
+		"local": "zcash.png"
+	}
+
+]

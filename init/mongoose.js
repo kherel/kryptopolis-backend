@@ -1,6 +1,6 @@
-import './app/models';
 import mongoose from 'mongoose';
-import settings from './settings';
+import '../app/models';
+import settings from '../settings/settings';
 
 mongoose.Promise = global.Promise;
 settings.isEnvTest ? null : mongoose.set('debug', true);
@@ -20,5 +20,7 @@ export const closeDb = async () => {
 export const User = mongoose.model('users');
 export const Ico = mongoose.model('icoes');
 export const Article = mongoose.model('articles');
+export const News = mongoose.model('news');
+export const Video = mongoose.model('videos');
 
 export default mongoose;

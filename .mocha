@@ -1,0 +1,6 @@
+--timeout 100000000
+--compilers js:babel-register
+--reporter list
+--colors
+--full-trace
+--require ./spec/support/index.js

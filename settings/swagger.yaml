@@ -1,0 +1,937 @@
+openapi: 3.0.0
+
+info:
+  title: cryptopolis.com
+  version: v1
+
+servers:
+  - url: http://localhost:4000/v1
+    description: local server
+  - url: http://cryptopolis.com:3000/v1
+    description: staging server
+
+paths:
+
+  /me:
+    get:
+      summary: "info about user"
+      parameters:
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "followers,icoes"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+    delete:
+      summary: "delete user by password"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              password: string
+              example:
+                data:
+                  attributes:
+                    password: "password"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+    put:
+      summary: "update current user"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                data:
+                  attributes:
+                    name: "name"
+                    email: "test@test.com"
+                    role: "user"
+                    editor: false
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+
+  /me/password:
+    put:
+      summary: "change password"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                data:
+                  attributes:
+                    oldPassword: "oldPassword"
+                    newPassword: "newPassword"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+
+  /me/followers:
+    post:
+      summary: "add in list mailchimp and add ico for current user"
+      parameters:
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "followers"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                data:
+                  type: "ico"
+                  id: "5a2fb133d2e9206022a92f16"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+    delete:
+      summary: "remove in list mailchimp and remove ico for current user"
+      parameters:
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "followers"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example:
+                data:
+                  type: "ico"
+                  id: "5a2fb133d2e9206022a92f16"
+
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+
+  /users:
+    get:
+      summary: "index"
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/page_offset'
+        - $ref: '#/components/parameters/page_limit'
+        - name: filter[name]
+          in: query
+          required: false
+          schema:
+            type: string
+          description: "query"
+        - name: filter[email]
+          in: query
+          required: false
+          schema:
+            type: string
+          description: "test@test.com"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          description: "updatedAt, -updatedAt"
+          example: -updatedAt
+        - name: include
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "followers,icoes"
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/user'
+
+    post:
+      summary: "create, after create send confim email, use maigun"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+
+  /users/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: "show"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+    put:
+      summary: "update"
+      description: "allow update only user.role admin and superAdmin"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ico'
+      responses:
+        200:
+          description: ""
+    delete:
+      summary: "delete"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+
+  /icoes:
+    get:
+      summary: "index"
+      description: |
+        1. get top icoes by followers - /v1/icoes?sort=-followers&page[limit]=6
+
+        2. filter by title - /v1/icoes?filter[title]=query
+
+        3. list last icoes and not archive (visibleAdmin) - /v1/icoes?sort=-updatedAt&filter[visibleAdmin]=true
+
+        4. you may use sparse fieldsets - /v1/icoes?fields[ico]=title,team
+
+          NOTE ico visibleAdmin=false return only admin, superAdmin
+
+      parameters:
+        - $ref: '#/components/parameters/page_offset'
+        - $ref: '#/components/parameters/page_limit'
+        - name: filter[title]
+          in: query
+          required: false
+          schema:
+            type: string
+          description: "query"
+        - name: filter[data]
+          in: query
+          required: false
+          schema:
+            type: string
+          description: "now, upcoming"
+        - name: filter[github]
+          in: query
+          required: false
+          schema:
+            type: string
+          description: "yes"
+        - name: filter[approve]
+          in: query
+          required: false
+          schema:
+            type: string
+          description: "true"
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          description: "followers, -followers, updatedAt, -updatedAt"
+          example: -followers
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ico'
+    post:
+      summary: "create"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ico'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ico'
+
+  /icoes/{titleUrl}:
+    parameters:
+      - $ref: '#/components/parameters/titleUrl'
+    get:
+      summary: "show by titleUrl"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ico'
+
+  /icoes/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    put:
+      summary: "update"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ico'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ico'
+    delete:
+      summary: "delete"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ico'
+
+  /news:
+    get:
+      summary: "index"
+      responses:
+        200:
+          description: ""
+    post:
+      summary: "create"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/news'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ico'
+
+  /news/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: "show"
+      responses:
+        200:
+          description: ""
+    put:
+      summary: "update"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/news'
+      responses:
+        200:
+          description: ""
+    delete:
+      summary: "delete"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: ""
+
+  /news:
+    get:
+      summary: "index"
+      responses:
+        200:
+          description: ""
+    post:
+      summary: "create"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/news'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ico'
+
+  /videos/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: "show"
+      responses:
+        200:
+          description: ""
+    put:
+      summary: "update"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/video'
+      responses:
+        200:
+          description: ""
+    delete:
+      summary: "delete"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: ""
+
+  /video:
+    get:
+      summary: "index"
+      responses:
+        200:
+          description: ""
+    post:
+      summary: "create"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/video'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ico'
+
+  /video/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: "show"
+      responses:
+        200:
+          description: ""
+    put:
+      summary: "update"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/video'
+      responses:
+        200:
+          description: ""
+    delete:
+      summary: "delete"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: ""                    
+
+  /auth/token:
+    put:
+      summary: "get jwt token"
+      requestBody:
+        $ref: '#/components/requestBodies/token'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/token'
+
+  /auth/send_confirm:
+    put:
+      summary: "get confirm email"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/message'
+
+  /auth/confirm:
+    post:
+      summary: "confirm email by code"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+              example:
+                data:
+                  attributes:
+                    code: "5a28e9eb9f042573d0daea21"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/message'
+
+  /auth/send_reset_password:
+    put:
+      summary: "send reset password email"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+              example:
+                data:
+                  attributes:
+                    email: "test@test.com"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/message'
+
+  /auth/reset_password:
+    post:
+      summary: "change password by code"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                new_password:
+                  type: string
+              example:
+                data:
+                  attributes:
+                    code: "5a28e9eb9f042573d0daea21"
+                    new_password: "password"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/message'
+
+  /auth/google:
+    post:
+      summary: "omniauth google"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+              example:
+                access_token: "5a28e9eb9f042573d0daea21"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/token'
+
+  /auth/facebook:
+    post:
+      summary: "omniauth facebook"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+              example:
+                access_token: "5a28e9eb9f042573d0daea21"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/token'
+
+  /auth/twitter/reverse:
+    post:
+      summary: "requestTokenUrl for react-twitter-auth "
+      responses:
+        200:
+          description: ""
+
+  /auth/twitter:
+    post:
+      summary: "loginUrl for react-twitter-auth "
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/token'
+
+  /subscribe:
+    post:
+      summary: "add email in mailchimp subscribe list"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              email:
+                type: string
+              example:
+                data:
+                  type: "email"
+                  attributes:
+                    email: "test@test.com"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/message'
+
+  /feed:
+    get:
+      summary: "json https://feedity.com/stream/V1tTU1U.rss"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    titleUrl:
+      name: titleUrl
+      in: path
+      required: true
+      schema:
+        type: string
+    filter:
+      name: filter[term]
+      in: query
+      required: false
+      schema:
+        type: string
+      description: "tdsfsdfsdfsd array, test"
+
+    page_offset:
+      name: page[offset]
+      in: query
+      required: false
+      schema:
+        type: integer
+      example: 0
+
+    page_limit:
+      name: page[limit]
+      in: query
+      required: false
+      schema:
+        type: integer
+      example: 10
+
+
+    user:
+      data:
+        type: "user"
+        attributes:
+          name: "user name"
+          email: "superAdmin@test.com"
+          password: "123"
+    ico:
+      data:
+        type: "ico"
+        attributes:
+          source: "source"
+          title: "title"
+          description: "description"
+
+  requestBodies:
+    token:
+      description: A JSON object containing pet information
+      required: true
+      content:
+        application/json:
+          schema:
+            properties:
+              email: string
+              password: string
+            example:
+              data:
+                attributes:
+                  email: "test@test.com"
+                  password: "password"
+  schemas:
+    ico:
+      properties:
+        approve:
+          type: boolean
+        visibleUser:
+          type: boolean
+        visibleAdmin:
+          type: boolean
+        user:
+          type: string
+        projectName:
+          type: string
+        tokenName:
+          type: string
+        tickerSymbol:
+          type: string
+        blockchain:
+          type: string
+        catchPhrase:
+          type: string
+        description:
+          type: string
+        differs:
+          type: string
+        country:
+          type: string
+        websiteLink:
+          type: string
+        teamNames:
+          type: array
+          items:
+            type: string
+        nameLegalCounsellor:
+          type: string
+        nameLawFirm:
+          type: string
+        tokenSaleStartDate:
+          type: string
+          format: date
+        tokenSaleStartTime:
+          type: string
+          format: date
+        tokenSaleEndDate:
+          type: string
+          format: date
+        tokenSaleEndTime:
+          type: string
+          format: date
+        totalSupply:
+          type: string
+        icoPrice:
+          type: number
+        whitepaperLink:
+          type: string
+        companyStructure:
+          type: string
+        blogLink:
+          type: string
+        rssFeed:
+          type: string
+        slackInvitationLink:
+          type: string
+        githubCodeRepository:
+          type: string
+        bitcoinTalkLink:
+          type: string
+        redditLink:
+          type: string
+        twitterProfile:
+          type: string
+        facebookProductPage:
+          type: string
+        linkedinCompanyLink:
+          type: string
+        telegramChannel:
+          type: string
+        chatRoomLink:
+          type: string
+        discussionForumLink:
+          type: string
+        youtubeIntroVideoLink:
+          type: string
+        youtubeChannelLink:
+          type: string
+        linksInterviews:
+          type: array
+          items:
+            type: string
+        linksArticles:
+          type: array
+          items:
+            type: string
+        smartContractAddress:
+          type: string
+      example:
+        data:
+          attributes:
+            source: "source"
+            title: "title"
+            description: "description"
+            approve: true
+            visibleUser: false
+            visibleAdmin: false
+
+    user:
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        role:
+          type: string
+          enum: ["user", "admin", "superAdmin"]
+      example:
+        data:
+          type: "user"
+          id: "5a28e9eb9f042573d0daea21"
+          attributes:
+            name: "user name"
+            email: "superAdmin@test.com"
+            password: "123"
+            role: "user"
+
+    article:
+      properties:
+        title:
+          type: string
+        metaTags:
+          type: array
+        keywords:
+          type: array
+        summary:
+          type: string
+        text:
+          type: string
+        image:
+          type: string
+        publish:
+          type: boolean
+        publishAt:
+          format: date
+      example:
+        data:
+          type: "articles"
+          id: "5a28e9eb9f042573d0daea21"
+          attributes:
+            title: "title"
+            metaTags: ["metaTags"]
+            keywords: ["keywords"]
+            summary: "summary"
+            text: "text"
+            image: "http://url.com/image.jpg"
+            publish: false
+            publishAt: ""
+
+    message:
+      type: string
+      example:
+        data:
+          type: "message"
+          attributes:
+            value: "ok"
+
+    token:
+      type: string
+      example:
+        data:
+          type: "token"
+          attributes:
+            value: "token value"

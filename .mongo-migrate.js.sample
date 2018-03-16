@@ -1,0 +1,7 @@
+module.exports = {
+  mongodb: {
+    url: "mongodb://USER:PASSWORD@mongo:27017/DB_NAME",
+  },
+  migrationsDir: "./db/migrations",
+  changelogCollectionName: "mongo_migrate",
+}

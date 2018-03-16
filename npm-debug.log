@@ -1,0 +1,49 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'w:tests' ]
+2 info using npm@3.10.8
+3 info using node@v6.9.1
+4 verbose run-script [ 'prew:tests', 'w:tests', 'postw:tests' ]
+5 info lifecycle kryptopolis-backend@1.0.0~prew:tests: kryptopolis-backend@1.0.0
+6 silly lifecycle kryptopolis-backend@1.0.0~prew:tests: no script for prew:tests, continuing
+7 info lifecycle kryptopolis-backend@1.0.0~w:tests: kryptopolis-backend@1.0.0
+8 verbose lifecycle kryptopolis-backend@1.0.0~w:tests: unsafe-perm in lifecycle true
+9 verbose lifecycle kryptopolis-backend@1.0.0~w:tests: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\devel_svn\Projects\kryptopolis-backend\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Libs\gradle-2.11\bin;C:\Libs\Perl64\site\bin;C:\Libs\Perl64\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SDKs\TypeScript\1.0\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Microsoft Network Monitor 3\;C:\Users\skgol_000\AppData\Local\nasm\;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files (x86)\Visual Leak Detector\bin\Win32;C:\Program Files\nodejs\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\TortoiseGit\bin;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_131\bin;C:\Program Files\Geth;C:\Libs\Python27;C:\Libs\Python27\Dlls;C:\Libs\Python27\Lib;C:\Libs\Python27\libs;C:\Libs\Python27\include;C:\Libs\Python27\tcl;C:\Libs\Python27\Tools;C:\Libs\Python27\Scripts;C:\Libs\Python27\Doc;C:\Libs\chromedriver_win32;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Libs\Ruby24-x64\bin;C:\Users\skgol_000\AppData\Local\Microsoft\WindowsApps;C:\Users\skgol_000\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft VS Code\bin;;C:\Users\skgol_000\AppData\Local\Programs\Fiddler;C:\Program Files\Docker Toolbox
+10 verbose lifecycle kryptopolis-backend@1.0.0~w:tests: CWD: C:\devel_svn\Projects\kryptopolis-backend
+11 silly lifecycle kryptopolis-backend@1.0.0~w:tests: Args: [ '/d /s /c',
+11 silly lifecycle   'SET "NODE_ENV=test" && _mocha --opts .mocha ./**/*.spec.js' ]
+12 silly lifecycle kryptopolis-backend@1.0.0~w:tests: Returned: code: 97  signal: null
+13 info lifecycle kryptopolis-backend@1.0.0~w:tests: Failed to exec w:tests script
+14 verbose stack Error: kryptopolis-backend@1.0.0 w:tests: `SET "NODE_ENV=test" && _mocha --opts .mocha ./**/*.spec.js`
+14 verbose stack Exit status 97
+14 verbose stack     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:255:16)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at EventEmitter.emit (events.js:191:7)
+14 verbose stack     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:40:14)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at ChildProcess.emit (events.js:191:7)
+14 verbose stack     at maybeClose (internal/child_process.js:877:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+15 verbose pkgid kryptopolis-backend@1.0.0
+16 verbose cwd C:\devel_svn\Projects\kryptopolis-backend
+17 error Windows_NT 10.0.16299
+18 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "run" "w:tests"
+19 error node v6.9.1
+20 error npm  v3.10.8
+21 error code ELIFECYCLE
+22 error kryptopolis-backend@1.0.0 w:tests: `SET "NODE_ENV=test" && _mocha --opts .mocha ./**/*.spec.js`
+22 error Exit status 97
+23 error Failed at the kryptopolis-backend@1.0.0 w:tests script 'SET "NODE_ENV=test" && _mocha --opts .mocha ./**/*.spec.js'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the kryptopolis-backend package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     SET "NODE_ENV=test" && _mocha --opts .mocha ./**/*.spec.js
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs kryptopolis-backend
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls kryptopolis-backend
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]

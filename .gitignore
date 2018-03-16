@@ -1,0 +1,7 @@
+.env
+.env.production
+.mongo-migrate.js
+node_modules
+log
+etc/mongo
+

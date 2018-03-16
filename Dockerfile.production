@@ -1,0 +1,16 @@
+FROM node:8.8.1
+
+ENV NODE_ENV production
+
+RUN npm install -g pm2
+
+COPY package.json /tmp/package.json
+COPY package-lock.json /tmp/package-lock.json
+RUN cd /tmp && npm install
+
+RUN mkdir -p /app && cp -a /tmp/node_modules /app/
+
+WORKDIR /app
+COPY . /app
+
+CMD pm2 start --no-daemon pm2.config.js
