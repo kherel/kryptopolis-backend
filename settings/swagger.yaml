@@ -225,11 +225,6 @@ paths:
               $ref: '#/components/schemas/user'
       security:
         - bearerAuth: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ico'
       responses:
         200:
           description: ""
@@ -405,7 +400,7 @@ paths:
         200:
           description: ""
 
-  /news:
+  /videos:
     get:
       summary: "index"
       responses:
@@ -419,7 +414,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/news'
+              $ref: '#/components/schemas/videos'
       responses:
         200:
           content:

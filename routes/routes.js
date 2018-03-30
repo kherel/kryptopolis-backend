@@ -106,15 +106,15 @@ export default (app) => {
   app.get('/v1/feed', FeedController.index)
 
   app.use((req, res, next) => {
-    res.status(404)
-    next(new Error("not found url"))
+    res.status(404).json({ status: 404, message: "Route doesn't exist"})
   })
 
-  app.use((err, req, res) => {
+  app.use((err, req, res, next) => {
     req.log.error(err.stack)
-    if (res.statusCode == 200) 
-      res.status(500)
-    res.json({ "error": err.message })
+    if (req.app.get('env') !== 'development') {
+      delete err.stack;
+    }
+    res.status(err.statusCode || 500).json(err)
   })
 
 }
