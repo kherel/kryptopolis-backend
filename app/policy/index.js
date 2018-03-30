@@ -1,6 +1,6 @@
 import { AbilityBuilder, Ability } from "casl"
 
-const defineAbilitiesFor = async (user) => {
+export default async (user) => {
   const { rules, can } = await AbilityBuilder.extract()
   const role = user ? user.role : "guest"
 
@@ -59,5 +59,3 @@ const defineAbilitiesFor = async (user) => {
 
   return await new Ability(rules)
 }
-
-export default defineAbilitiesFor

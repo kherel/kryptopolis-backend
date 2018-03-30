@@ -1,6 +1,6 @@
 import "../support/hook"
 import { User, Ico } from "../../init/mongoose"
-import { defineAbilitiesFor } from '../../app/policy'
+import { default as defineAbilitiesFor } from '../../app/policy'
 
 describe(__filename, () => {
 

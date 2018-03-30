@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-import { defineAbilitiesFor } from '../policy'
+import { default as defineAbilitiesFor } from '../policy'
 
 const User = mongoose.model('users')
 

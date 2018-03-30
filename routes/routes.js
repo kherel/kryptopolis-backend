@@ -114,7 +114,7 @@ export default (app) => {
     if (req.app.get('env') !== 'development') {
       delete err.stack;
     }
-    res.status(err.statusCode || 500).json(err)
+    res.status(err.statusCode || 500).json({ status: 500, message: err.message })
   })
 
 }
