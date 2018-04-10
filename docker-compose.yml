@@ -2,8 +2,8 @@ version: '3'
 services:
 
   server:
-    image: cryptopolis/backend
-    container_name: cryptopolis_1
+    image: kryptopolis/backend
+    container_name: kryptopolis_1
     build:
       context: .
       dockerfile: Dockerfile
