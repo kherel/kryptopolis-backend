@@ -3,6 +3,7 @@ services:
 
   server:
     image: kryptopolis/backend
+    env_file: .env
     container_name: kryptopolis_1
     build:
       context: .
