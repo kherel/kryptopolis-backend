@@ -970,3 +970,4 @@ components:
           type: "token"
           attributes:
             value: "token value"
+            role: "user role"

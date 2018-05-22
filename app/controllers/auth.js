@@ -23,7 +23,7 @@ export default {
         next(new Error("wrong password"))
       }
 
-      const response = tokenSerializer(createJwt(user))
+      const response = tokenSerializer(createJwt(user), user.role)
 
       res.status(200).json(response)
     } catch (err) {

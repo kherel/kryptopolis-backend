@@ -203,13 +203,14 @@ export const messageSerializer = (value) => {
   }).serialize({ value })
 }
 
-export const tokenSerializer = (value) => {
+export const tokenSerializer = (value, role) => {
+  console.log(value);
   return new Serializer('token', {
     id: "id",
-    attributes: ["value"],
+    attributes: ["value", "role"],
     keyForAttribute: "camelCase",
     typeForAttribute: (attribute, record) => {
       return (record && record.type) ? record.type : attribute
     },
-  }).serialize({ value })
+  }).serialize({ value, role })
 }
