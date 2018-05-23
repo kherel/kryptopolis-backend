@@ -1,8 +1,8 @@
 import request from 'request'
 import settings from "../../settings/settings"
 import { User } from "../../init/mongoose"
-import { createJwt } from "../services/jwt"
-import { tokenSerializer, messageSerializer } from "../serializers"
+import { createJwt, verifyJwt } from "../services/jwt"
+import { tokenSerializer, checkTokenSerializer, messageSerializer } from "../serializers"
 import { getAttributes } from "../services/params"
 import { confirm, reset } from "../services/mailgun"
 
@@ -24,6 +24,18 @@ export default {
       }
 
       const response = tokenSerializer(createJwt(user), user.role)
+
+      res.status(200).json(response)
+    } catch (err) {
+      return next(err)
+    }
+  },
+
+  checkToken: async (req, res, next) => {
+    try {
+      const role = req.user.role
+
+      const response = checkTokenSerializer(role)
 
       res.status(200).json(response)
     } catch (err) {

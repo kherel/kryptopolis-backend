@@ -73,6 +73,7 @@ export default (app) => {
   app.delete('/v1/videos/:id', AuthMiddleware, AbilityMiddleware, VideosController.delete)
 
   app.put('/v1/auth/token', AuthController.createToken)
+  app.post('/v1/auth/check_token', AuthMiddleware, AuthController.checkToken)
 
   app.put('/v1/auth/send_confirm', AuthMiddleware, AuthController.sendConfirm)
   app.post('/v1/auth/confirm', AuthController.confirm)

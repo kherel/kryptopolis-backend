@@ -204,7 +204,6 @@ export const messageSerializer = (value) => {
 }
 
 export const tokenSerializer = (value, role) => {
-  console.log(value);
   return new Serializer('token', {
     id: "id",
     attributes: ["value", "role"],
@@ -213,4 +212,15 @@ export const tokenSerializer = (value, role) => {
       return (record && record.type) ? record.type : attribute
     },
   }).serialize({ value, role })
+}
+
+export const checkTokenSerializer = (value) => {
+  return new Serializer('role', {
+    id: "id",
+    attributes: ["value"],
+    keyForAttribute: "camelCase",
+    typeForAttribute: (attribute, record) => {
+      return (record && record.type) ? record.type : attribute
+    },
+  }).serialize({ value })
 }
