@@ -68,6 +68,8 @@ const newsAttributes = [
   "title",
   "text",
   "image",
+  "publish",
+  "publishAt",
 
   "user",
   "updatedAt",

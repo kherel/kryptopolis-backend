@@ -12,6 +12,12 @@ const schema = new mongoose.Schema({
   image: {
     type: String,
   },
+  publish: {
+    type: Boolean,
+  },
+  publishAt: {
+    type: Date,
+  },
 
   user: {
     type: mongoose.Schema.Types.ObjectId,

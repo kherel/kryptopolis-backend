@@ -942,6 +942,10 @@ components:
           type: string
         image:
           type: string
+        publish:
+          type: boolean
+        publishAt:
+          format: date
       example:
         data:
           type: "news"
@@ -950,6 +954,8 @@ components:
             title: "title"
             text: "text"
             image: "http://url.com/image.jpg"
+            publish: false
+            publishAt: ""
 
     video:
       properties:

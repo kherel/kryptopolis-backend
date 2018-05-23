@@ -1,6 +1,6 @@
 import factory from 'factory-girl'
 import faker from "faker"
-import { Ico, User, Article } from "../../init/mongoose"
+import { Ico, User, Article, News } from "../../init/mongoose"
 
 factory.define('user', User, {
   name: faker.name.findName,
@@ -136,6 +136,14 @@ factory.define('article', Article, {
   metaTags: ["a", "b"],
   keywords: ["a", "b"],
   summary: faker.lorem.words,
+  text: faker.lorem.words,
+  image: faker.image.imageUrl,
+  publish: false,
+  publishAt: faker.date.past,
+})
+
+factory.define('news', News, {
+  title: faker.name.findName,
   text: faker.lorem.words,
   image: faker.image.imageUrl,
   publish: false,

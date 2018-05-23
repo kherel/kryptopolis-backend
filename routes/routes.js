@@ -54,14 +54,14 @@ export default (app) => {
   app.put('/v1/icoes/:id', AuthMiddleware, AbilityMiddleware, IcoesController.update)
   app.delete('/v1/icoes/:id', AuthMiddleware, AbilityMiddleware, IcoesController.delete)
 
-  app.get('/v1/articles', ArticlesController.index)
-  app.get('/v1/articles/:id', ArticlesController.show)
+  app.get('/v1/articles', GetUserMiddleware, AbilityMiddleware, ArticlesController.index)
+  app.get('/v1/articles/:id', GetUserMiddleware, AbilityMiddleware, ArticlesController.show)
   app.post('/v1/articles', AuthMiddleware, AbilityMiddleware, ArticlesController.create)
   app.put('/v1/articles/:id', AuthMiddleware, AbilityMiddleware, ArticlesController.update)
   app.delete('/v1/articles/:id', AuthMiddleware, AbilityMiddleware, ArticlesController.delete)
 
-  app.get('/v1/news', NewsController.index)
-  app.get('/v1/news/:id', NewsController.show)
+  app.get('/v1/news', GetUserMiddleware, AbilityMiddleware, NewsController.index)
+  app.get('/v1/news/:id', GetUserMiddleware, AbilityMiddleware, NewsController.show)
   app.post('/v1/news', AuthMiddleware, AbilityMiddleware, NewsController.create)
   app.put('/v1/news/:id', AuthMiddleware, AbilityMiddleware, NewsController.update)
   app.delete('/v1/news/:id', AuthMiddleware, AbilityMiddleware, NewsController.delete)
