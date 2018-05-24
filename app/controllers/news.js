@@ -7,6 +7,8 @@ const filterAttributes = pick([
   "title",
   "text",
   "image",
+  "publish",
+  "publishAt"
 ])
 
 export default {
