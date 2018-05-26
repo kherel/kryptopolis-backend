@@ -14,7 +14,7 @@ export default {
   index: async (req, res, next) => {
     try {
       let options = {};
-      if (!req.user || req.user.role == "user")
+      if (!req.user || req.user.editor === true)
         options = { publish: true, publishAt: { $lte: new Date() } }
 
       let news = await News.find(options, null, getOptionsFind(req))
@@ -34,7 +34,7 @@ export default {
     try {
       const news = await News.findById(id)
 
-      if ((!req.user || req.user.role == "user") 
+      if ((!req.user || req.user.editor === true) 
         && news && (news.publish === false || news.publishAt > new Date())) {
           res.status(401)
           return next(new Error("forbidden"))
