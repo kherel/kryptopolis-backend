@@ -50,7 +50,7 @@ export default async (user) => {
     can('delete', "users", "all")
   }
 
-  if (user && user.editor) {
+  if (role == "admin" || role == "superAdmin") {
     can('read', "articles", "all")
     can('create', "articles", "all")
     can('update', 'articles', "all")

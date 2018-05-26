@@ -7,8 +7,6 @@ const filterAttributes = pick([
   "title",
   "text",
   "image",
-  "publish",
-  "publishAt"
 ])
 
 export default {
@@ -16,7 +14,7 @@ export default {
   index: async (req, res, next) => {
     try {
       let options = {};
-      if (!req.user || req.user.editor === true)
+      if (!req.user || req.user.role == "user")
         options = { publish: true, publishAt: { $lte: new Date() } }
 
       let news = await News.find(options, null, getOptionsFind(req))
@@ -36,7 +34,7 @@ export default {
     try {
       const news = await News.findById(id)
 
-      if ((!req.user || req.user.editor === true) 
+      if ((!req.user || req.user.role == "user") 
         && news && (news.publish === false || news.publishAt > new Date())) {
           res.status(401)
           return next(new Error("forbidden"))
