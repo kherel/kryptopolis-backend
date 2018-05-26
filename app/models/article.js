@@ -18,6 +18,9 @@ const schema = new mongoose.Schema({
   text: {
     type: String,
   },
+  draft: {
+    type: String,
+  },
   image: {
     type: String,
   },

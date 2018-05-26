@@ -55,6 +55,7 @@ const atricleAttributes = [
   "keywords",
   "summary",
   "text",
+  "draft",
   "image",
   "publish",
   "publishAt",
@@ -67,6 +68,7 @@ const atricleAttributes = [
 const newsAttributes = [
   "title",
   "text",
+  "draft",
   "image",
   "publish",
   "publishAt",

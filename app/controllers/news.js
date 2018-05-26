@@ -6,7 +6,10 @@ import { getAttributes, getOptionsFind } from "../services/params"
 const filterAttributes = pick([
   "title",
   "text",
+  "draft",
   "image",
+  "publish",
+  "publishAt",
 ])
 
 export default {
@@ -14,11 +17,14 @@ export default {
   index: async (req, res, next) => {
     try {
       let options = {};
+      
       if (!req.user || req.user.role == "user")
         options = { publish: true, publishAt: { $lte: new Date() } }
 
-      let news = await News.find(options, null, getOptionsFind(req))
-      let total = await News.count()
+      let requestOptions = getOptionsFind(req)
+
+      let news = await News.find(options, null, requestOptions)
+      let total = await News.count(options)
 
       let response = newsSerializer(news, { total: total })
 

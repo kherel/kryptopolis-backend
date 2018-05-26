@@ -9,6 +9,7 @@ const filterAttributes = pick([
   "keywords",
   "summary",
   "text",
+  "draft",
   "image",
   "publish",
   "publishAt",
