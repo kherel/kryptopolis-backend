@@ -80,6 +80,7 @@
     "superagent": "^3.8.2",
     "swagger-ui-express": "^2.0.13",
     "to-snake-case": "^1.0.0",
+    "url-parse": "^1.4.0",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {

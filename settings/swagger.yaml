@@ -408,6 +408,8 @@ paths:
   /news:
     get:
       summary: "index"
+      security:
+        - bearerAuth: []
       responses:
         200:
           description: ""
@@ -432,6 +434,8 @@ paths:
       - $ref: '#/components/parameters/id'
     get:
       summary: "show"
+      security:
+        - bearerAuth: []
       responses:
         200:
           description: ""
@@ -914,6 +918,8 @@ components:
           type: string
         text:
           type: string
+        draft:
+          type: string
         image:
           type: string
         publish:
@@ -930,6 +936,7 @@ components:
             keywords: ["keywords"]
             summary: "summary"
             text: "text"
+            draft: "draft"
             image: "http://url.com/image.jpg"
             publish: false
             publishAt: ""
@@ -939,6 +946,8 @@ components:
         title:
           type: string
         text:
+          type: string
+        draft:
           type: string
         image:
           type: string
@@ -953,6 +962,7 @@ components:
           attributes:
             title: "title"
             text: "text"
+            draft: "draft"
             image: "http://url.com/image.jpg"
             publish: false
             publishAt: ""

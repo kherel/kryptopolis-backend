@@ -36,6 +36,7 @@ const schema = new mongoose.Schema({
     members: [{
       name: String,
       position: String,
+      socialLinks: [String]
     }],
     countryOfOrigin: String,
   },
@@ -45,7 +46,6 @@ const schema = new mongoose.Schema({
   },
 
   legal: Object,
-
 
   links: [{
     title: String,
