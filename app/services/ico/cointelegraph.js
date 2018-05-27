@@ -154,6 +154,6 @@ export default async () => {
     //await factory.create('icoVisible', tmp)
     await Ico.createObject(tmp)
 
-    break;
+    //break;
   }
 }
