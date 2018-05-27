@@ -88,7 +88,7 @@ export default async () => {
 
     const dates = getElements(dc, '.ico-card-about__date-item-val')
     tmp.overview.tokenSaleOpeningDate = getTextContent(dates[0])
-    tmp.overview.tokenSaleClosingDate = getTextContent(dates[1])
+    tmp.overview.tokenSaleClosingDate = (getTextContent(dates[1]).trim() == 'TBD' ? '' : getTextContent(dates[1]))
 
     try {
       tmp.overview.symbol = getElement(dc, '.ico-card-tabs__content-item-ttl')
@@ -150,10 +150,6 @@ export default async () => {
 
     tmp = trim(tmp)
 
-    //console.log(JSON.stringify(tmp))
-    //await factory.create('icoVisible', tmp)
     await Ico.createObject(tmp)
-
-    //break;
   }
 }
