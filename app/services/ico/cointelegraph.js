@@ -144,12 +144,15 @@ export default async () => {
       tmp.links.push(link)
     }
 
-    //tmp.logo = await upload(tmp.logo, tmp.title)
+    tmp.visibleAdmin = true
+
+    tmp.logo = await upload(tmp.logo, tmp.title)
 
     tmp = trim(tmp)
 
     //console.log(JSON.stringify(tmp))
-    await factory.create('icoVisible', tmp)
+    //await factory.create('icoVisible', tmp)
+    await Ico.createObject(tmp)
 
     break;
   }

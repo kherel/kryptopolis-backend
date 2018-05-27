@@ -43,10 +43,10 @@ const run = async () => {
 
   await closeDb()
 
-  console.log("--------------------")
-  console.log("backup")
-  await backup()
-  console.log("--------------------")
+  // console.log("--------------------")
+  // console.log("backup")
+  // await backup()
+  // console.log("--------------------")
 
   console.log("end", new Date())
 }
