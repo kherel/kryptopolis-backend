@@ -69,6 +69,7 @@ const newsAttributes = [
   "title",
   "text",
   "draft",
+  "summary",
   "image",
   "publish",
   "publishAt",
