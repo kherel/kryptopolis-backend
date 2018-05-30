@@ -7,6 +7,7 @@ const filterAttributes = pick([
   "title",
   "text",
   "draft",
+  "summary",
   "image",
   "publish",
   "publishAt",
