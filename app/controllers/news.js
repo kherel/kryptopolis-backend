@@ -40,7 +40,8 @@ export default {
     const { id } = req.params
 
     try {
-      const news = await News.findById(id)
+      const news = await News.findById(id).
+        populate("user", "name")
 
       if ((!req.user || req.user.role == "user") 
         && news && (news.publish === false || news.publishAt > new Date())) {

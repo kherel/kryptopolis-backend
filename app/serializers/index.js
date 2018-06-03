@@ -89,6 +89,14 @@ const videoAttributes = [
   "createdAt",
 ]
 
+const tickerAttributes = [
+  "name",
+  "symbol",
+  "coinName",
+  "fullName",
+  "isTrading"
+]
+
 export const userSerializer = async (data, meta = {}) => {
   const attributes = path(["attributes", "user"], meta) || userAttributes
 
@@ -184,9 +192,23 @@ export const newsSerializer = (data, meta = {}) => {
 }
 
 export const videoSerializer = (data, meta = {}) => {
-  return new Serializer('news', {
+  return new Serializer('video', {
     id: "id",
     attributes: videoAttributes,
+    keyForAttribute: "camelCase",
+    typeForAttribute: (attribute, record) => {
+      return (record && record.type) ? record.type : attribute
+    },
+    meta: {
+      "total-pages": meta.total,
+    },
+  }).serialize(data)
+}
+
+export const tickerSerializer = (data, meta = {}) => {
+  return new Serializer('ticker', {
+    id: "id",
+    attributes: tickerAttributes,
     keyForAttribute: "camelCase",
     typeForAttribute: (attribute, record) => {
       return (record && record.type) ? record.type : attribute

@@ -22,5 +22,6 @@ export const Ico = mongoose.model('icoes');
 export const Article = mongoose.model('articles');
 export const News = mongoose.model('news');
 export const Video = mongoose.model('videos');
+export const Ticker = mongoose.model('tickers');
 
 export default mongoose;

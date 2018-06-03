@@ -517,8 +517,14 @@ paths:
         - bearerAuth: []
       responses:
         200:
-          description: ""          
+          description: ""
 
+  /tickers:
+    get:
+      summary: "index"
+      responses:
+        200:
+          description: ""
 
   /auth/token:
     put:

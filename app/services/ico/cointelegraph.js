@@ -62,7 +62,7 @@ export default async () => {
     const ico = await Ico.findOne({ title })
 
     if (ico)
-      continue;
+      continue
 
     console.log(title)
 
