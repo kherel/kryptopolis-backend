@@ -24,7 +24,8 @@ export default {
 
       let requestOptions = getOptionsFind(req)
 
-      let news = await News.find(options, null, requestOptions)
+      let news = await News.find(options, null, requestOptions).
+        populate("user", "name")
       let total = await News.count(options)
 
       let response = newsSerializer(news, { total: total })
