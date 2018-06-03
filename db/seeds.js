@@ -5,8 +5,8 @@ const create = async () => {
   try {
     await connectDb()
 
-    for (let i = 0; i < 50; ++i)
-      await factory.create('news')
+    // for (let i = 0; i < 50; ++i)
+    //   await factory.create('news')
 
     const user1 = await factory.create('user', { email: "user@test.com", password: "123", role: "user" })
     const user2 = await factory.create('user', { email: "admin@test.com", password: "123", role: "admin" })

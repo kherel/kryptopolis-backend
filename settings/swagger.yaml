@@ -408,6 +408,16 @@ paths:
   /news:
     get:
       summary: "index"
+      parameters:
+        - $ref: '#/components/parameters/page_offset'
+        - $ref: '#/components/parameters/page_limit'
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          description: "updatedAt, -updatedAt"
+          example: -updatedAt      
       security:
         - bearerAuth: []
       responses:
