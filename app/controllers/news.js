@@ -20,7 +20,7 @@ export default {
       let options = {};
       
       if (!req.user || req.user.role == "user")
-        options = { publish: true, publishAt: { $exists: true, $lte: new Date() } }
+        options = { publish: true, $or: [ { publishAt: { $exists: false } }, { publishAt: { $exists: true, $lte: new Date() } } ] }
 
       let requestOptions = getOptionsFind(req)
 
