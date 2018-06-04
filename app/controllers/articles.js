@@ -19,7 +19,8 @@ export default {
 
   index: async (req, res, next) => {
     try {
-      let articles = await Article.find({}, null, getOptionsFind(req))
+      let articles = await Article.find({}, null, getOptionsFind(req)).
+        populate("user", "name")
       let total = await Article.count()
 
       let response = articleSerializer(articles, { total: total })
@@ -34,7 +35,8 @@ export default {
     const { id } = req.params
 
     try {
-      const article = await Article.findById(id)
+      const article = await Article.findById(id).
+        populate("user", "name")
       const response = articleSerializer(article)
 
       res.status(200).json(response)
