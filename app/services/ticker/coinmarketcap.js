@@ -4,7 +4,7 @@ import { Ticker } from '../../../init/mongoose'
 export const getTickers = async (path) => {
   let num = 100;
 
-  for (var start = 0, tries = 0; start < num || tries < 30; start += 100, ++i) {
+  for (let start = 0, tries = 0; start < num || tries < 30; start += 100, ++i) {
 
     let tickers = await request
       .get('https://api.coinmarketcap.com/v2/ticker/&start=' + start + '&limit=100&sort=id')
@@ -15,7 +15,7 @@ export const getTickers = async (path) => {
 
     if (!tickers["metadata"]["error"]) {
 
-      for (var k in tickers["data"]) {
+      for (let k in tickers["data"]) {
         const name = tickers["data"][k]["name"]
         const ticker = await Ticker.findOne({ name })
 
