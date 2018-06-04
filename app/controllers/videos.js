@@ -7,13 +7,21 @@ const filterAttributes = pick([
   "title",
   "text",
   "video",
+  "publish",
+  "publishAt",
 ])
 
 export default {
 
   index: async (req, res, next) => {
     try {
-      let videos = await Video.find({}, null, getOptionsFind(req))
+      let options = {};
+      
+      if (!req.user || req.user.role == "user")
+        options = { publish: true, $or: [ { publishAt: { $exists: false } }, { publishAt: { $exists: true, $lte: new Date() } } ] }
+
+      let videos = await Video.find(options, null, getOptionsFind(req)).
+        populate("user", "name")
       let total = await Video.count()
 
       let response = videoSerializer(videos, { total: total })
@@ -28,7 +36,15 @@ export default {
     const { id } = req.params
 
     try {
-      const video = await Video.findById(id)
+      const video = await Video.findById(id).
+        populate("user", "name")
+
+      if ((!req.user || req.user.role == "user")
+        && news && (news.publish === false || news.publishAt > new Date())) {
+        res.status(401)
+        return next(new Error("forbidden"))
+      }
+
       const response = videoSerializer(video)
 
       res.status(200).json(response)

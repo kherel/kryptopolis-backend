@@ -12,6 +12,12 @@ const schema = new mongoose.Schema({
   video: {
     type: String,
   },
+  publish: {
+    type: Boolean,
+  },
+  publishAt: {
+    type: Date,
+  },
 
   user: {
     type: mongoose.Schema.Types.ObjectId,

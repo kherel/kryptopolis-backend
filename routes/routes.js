@@ -67,8 +67,8 @@ export default (app) => {
   app.put('/v1/news/:id', AuthMiddleware, AbilityMiddleware, NewsController.update)
   app.delete('/v1/news/:id', AuthMiddleware, AbilityMiddleware, NewsController.delete)
   
-  app.get('/v1/videos', VideosController.index)
-  app.get('/v1/videos/:id', VideosController.show)
+  app.get('/v1/videos', GetUserMiddleware, AbilityMiddleware, VideosController.index)
+  app.get('/v1/videos/:id', GetUserMiddleware, AbilityMiddleware, VideosController.show)
   app.post('/v1/videos', AuthMiddleware, AbilityMiddleware, VideosController.create)
   app.put('/v1/videos/:id', AuthMiddleware, AbilityMiddleware, VideosController.update)
   app.delete('/v1/videos/:id', AuthMiddleware, AbilityMiddleware, VideosController.delete)

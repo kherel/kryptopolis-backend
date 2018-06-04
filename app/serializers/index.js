@@ -83,6 +83,8 @@ const videoAttributes = [
   "title",
   "text",
   "image",
+  "publish",
+  "publishAt",
 
   "user",
   "updatedAt",
