@@ -40,6 +40,7 @@ export const getTickers = async (path) => {
           await ticker.save()
         }
       } catch (err) {
+        console.log(err)
         continue
       }
     }
