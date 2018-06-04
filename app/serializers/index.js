@@ -82,7 +82,7 @@ const newsAttributes = [
 const videoAttributes = [
   "title",
   "text",
-  "image",
+  "video",
   "publish",
   "publishAt",
 
