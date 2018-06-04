@@ -60,6 +60,11 @@ export default async (user) => {
     can('create', "news", "all")
     can('update', 'news', "all")
     can('delete', "news", "all")
+    
+    can('read', "videos", "all")
+    can('create', "videos", "all")
+    can('update', 'videos', "all")
+    can('delete', "videos", "all")
   }
 
   return await new Ability(rules)
