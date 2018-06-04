@@ -991,6 +991,10 @@ components:
           type: string
         video:
           type: string
+        publish:
+          type: boolean
+        publishAt:
+          format: date
       example:
         data:
           type: "videos"
@@ -999,6 +1003,43 @@ components:
             title: "title"
             text: "text"
             video: "http://url.com/image.jpg"
+            publish: false
+            publishAt: ""
+
+    ticker:
+      properties:
+        name:
+          type: string
+        symbol:
+          type: string
+        priceUSD:
+          type: number
+        volume24h:
+          type: number
+        marketCap:
+          type: number
+        percentChange1h:
+          type: umber
+        percentChange24h:
+          type: number
+        percentChange7d:
+          type: number
+        lastUpdated:
+          type: number
+      example:
+        data:
+          type: "tickers"
+          id: "5a28e9eb9f042573d0daea21"
+          attributes:
+            name: "Bitcoin"
+            symbol: "BTC"
+            priceUSD: 42
+            volume24h: 100000
+            marketCap: 111111
+            percentChange1h: 0.2
+            percentChange24h: 0.3
+            percentChange7d: 0.4
+            lastUpdated: 1517575757
 
     message:
       type: string
