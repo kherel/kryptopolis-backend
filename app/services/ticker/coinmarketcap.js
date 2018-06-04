@@ -7,7 +7,7 @@ export const getTickers = async (path) => {
   for (let start = 0, tries = 0; start < num || tries < 30; start += 100, ++i) {
 
     let tickers = await request
-      .get('https://api.coinmarketcap.com/v2/ticker/&start=' + start + '&limit=100&sort=id')
+      .get('https://api.coinmarketcap.com/v2/ticker/?start=' + start + '&limit=100&sort=id')
 
     tickers = JSON.parse(tickers.text)
 
