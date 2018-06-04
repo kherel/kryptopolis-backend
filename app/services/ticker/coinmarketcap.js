@@ -14,7 +14,7 @@ export const getTickers = async (path) => {
       const ticker = await Ticker.findOne({ name })
 
       try {
-        if (ticker) {
+        if (!ticker) {
           let tmp = {}
 
           tmp.name = tickers["data"][k]["name"]
