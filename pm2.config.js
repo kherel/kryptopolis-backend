@@ -14,5 +14,12 @@ module.exports = {
       log: "./log/jobs.log",
       max_restarts: 10,
     },
+    {
+      name: "tickers",
+      script: "npm",
+      args: "run tickers",
+      log: "./log/tickers.log",
+      max_restarts: 10,
+    },
   ],
 }

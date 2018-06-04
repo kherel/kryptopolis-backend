@@ -92,9 +92,13 @@ const videoAttributes = [
 const tickerAttributes = [
   "name",
   "symbol",
-  "coinName",
-  "fullName",
-  "isTrading"
+  "priceUSD",
+  "volume24h",
+  "marketCap",
+  "percentChange1h",
+  "percentChange24h",
+  "percentChange7d",
+  "lastUpdated",
 ]
 
 export const userSerializer = async (data, meta = {}) => {

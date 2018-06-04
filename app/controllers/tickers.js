@@ -6,9 +6,13 @@ import { getAttributes, getOptionsFind } from "../services/params"
 const filterAttributes = pick([
   "name",
   "symbol",
-  "coinName",
-  "fullName",
-  "isTrading"
+  "priceUSD",
+  "volume24h",
+  "marketCap",
+  "percentChange1h",
+  "percentChange24h",
+  "percentChange7d",
+  "lastUpdated",
 ])
 
 export default {

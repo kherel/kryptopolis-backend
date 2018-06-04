@@ -6,7 +6,6 @@ import backup from '../services/mongo/backup'
 // import { addGithubInfo } from '../services/github'
 // import { addTwitterFollowersIco } from '../services/twitter'
 import checkForNewIco from '../services/ico'
-import checkForNewTickers from '../services/ticker'
 
 const time = { hour: 12, minute: 30 }
 
@@ -20,11 +19,6 @@ const run = async () => {
   console.log("--------------------")
   console.log("checkForNewIco")
   await checkForNewIco()
-  console.log("--------------------")
-
-  console.log("--------------------")
-  console.log("checkForNewTickers")
-  await checkForNewTickers()
   console.log("--------------------")
 
   // console.log("--------------------")
@@ -49,10 +43,10 @@ const run = async () => {
 
   await closeDb()
 
-  // console.log("--------------------")
-  // console.log("backup")
-  // await backup()
-  // console.log("--------------------")
+  console.log("--------------------")
+  console.log("backup")
+  await backup()
+  console.log("--------------------")
 
   console.log("end", new Date())
 }

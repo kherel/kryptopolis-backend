@@ -10,14 +10,26 @@ const schema = new mongoose.Schema({
   symbol: {
     type: String,
   },
-  coinName: {
-    type: String,
+  priceUSD: {
+    type: Number,
   },
-  fullName: {
-    type: String,
+  volume24h: {
+    type: Number,
   },
-  isTrading: {
-    type: Boolean,
+  marketCap: {
+    type: Number,
+  },
+  percentChange1h: {
+    type: Number,
+  },
+  percentChange24h: {
+    type: Number,
+  },
+  percentChange7d: {
+    type: Number,
+  },
+  lastUpdated: {
+    type: Number,
   }
 
 }, {
