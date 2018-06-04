@@ -3,7 +3,7 @@ import { Ticker } from '../../../init/mongoose'
 
 export const getTickers = async (path) => {
   let tickers = await request
-    .get('https://min-api.cryptocompare.com/data/all/coinlist')
+    .get('https://api.coinmarketcap.com/v2/ticker/')
 
   tickers = JSON.parse(tickers.text)
 
