@@ -10,7 +10,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "4000:4000"
-    command: bash -c "npm run dev"
+#    command: bash -c "npm run dev"
     links:
       - mongo
     volumes:
