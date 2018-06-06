@@ -2,9 +2,11 @@ import schedule from 'node-schedule'
 import { connectDb, closeDb } from "../../init/mongoose"
 import checkForUpdatedTickers from '../services/ticker'
 
-const time = { minute: 5, second: 30 }
+var rule = new schedule.RecurrenceRule();
 
-schedule.scheduleJob(time, async () => { await run() })
+rule.minute = new schedule.Range(0, 59, 5);
+
+schedule.scheduleJob(rule, async () => { await run() })
 
 const run = async () => {
   console.log("start", new Date())
