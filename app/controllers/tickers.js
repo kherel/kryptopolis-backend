@@ -38,11 +38,11 @@ export default {
         .sort("-percentChange24h")
         .limit(10);
 
-      let widget = await Ticker.find({
+      let main = await Ticker.find({
         'name': ['Bitcoin', 'Ethereum', 'Ripple']
       })
 
-      res.status(200).json(normalizeSerializer({up, down, widget}));
+      res.status(200).json(normalizeSerializer({up, down, main}));
     } catch (err) {
       return next(err);
     }
