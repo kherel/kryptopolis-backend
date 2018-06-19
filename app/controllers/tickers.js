@@ -1,20 +1,18 @@
-import { merge, pick } from "ramda";
 import { Ticker } from "../../init/mongoose";
 import { tickerSerializer } from "../serializers";
-import { getAttributes, getOptionsFind } from "../services/params";
-import mongoose from 'mongoose'
+import { getOptionsFind } from "../services/params";
 
-const filterAttributes = pick([
-  "name",
-  "symbol",
-  "priceUSD",
-  "volume24h",
-  "marketCap",
-  "percentChange1h",
-  "percentChange24h",
-  "percentChange7d",
-  "lastUpdated"
-]);
+// const filterAttributes = pick([
+//   "name",
+//   "symbol",
+//   "priceUSD",
+//   "volume24h",
+//   "marketCap",
+//   "percentChange1h",
+//   "percentChange24h",
+//   "percentChange7d",
+//   "lastUpdated"
+// ]);
 
 export default {
   index: async (req, res, next) => {
@@ -44,7 +42,7 @@ export default {
         'name': ['Bitcoin', 'Ethereum', 'Ripple']
       })
 
-      res.status(200).json(nomalizeSerializer({up, down, widget}));
+      res.status(200).json(normalizeSerializer({up, down, widget}));
     } catch (err) {
       return next(err);
     }
@@ -52,7 +50,7 @@ export default {
 };
 
 
-function nomalizeSerializer(obj) {
+function normalizeSerializer(obj) {
   const res = {
     entities: {}
   }
