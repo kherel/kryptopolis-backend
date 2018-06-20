@@ -47,7 +47,7 @@ export default {
       return next(err);
     }
   }
-};
+}
 
 
 function normalizeSerializer(obj) {
