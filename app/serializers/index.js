@@ -79,6 +79,15 @@ const newsAttributes = [
   "createdAt",
 ]
 
+const portfolioAttributes = [
+  "publish",
+  "forecast",
+
+  "user",
+  "updatedAt",
+  "createdAt",
+]
+
 const videoAttributes = [
   "title",
   "text",
@@ -187,6 +196,20 @@ export const newsSerializer = (data, meta = {}) => {
   return new Serializer('news', {
     id: "id",
     attributes: newsAttributes,
+    keyForAttribute: "camelCase",
+    typeForAttribute: (attribute, record) => {
+      return (record && record.type) ? record.type : attribute
+    },
+    meta: {
+      "total-pages": meta.total,
+    },
+  }).serialize(data)
+}
+
+export const portfolioSerializer = (data, meta = {}) => {
+  return new Serializer('portfolio', {
+    id: "id",
+    attributes: portfolioAttributes,
     keyForAttribute: "camelCase",
     typeForAttribute: (attribute, record) => {
       return (record && record.type) ? record.type : attribute

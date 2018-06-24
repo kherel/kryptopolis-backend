@@ -1,6 +1,6 @@
 import factory from 'factory-girl'
 import faker from "faker"
-import { Ico, User, Article, News } from "../../init/mongoose"
+import { Ico, User, Article, News, Ticker, Portfolio } from "../../init/mongoose"
 
 factory.define('user', User, {
   name: faker.name.findName,
@@ -148,6 +148,16 @@ factory.define('news', News, {
   image: faker.image.imageUrl,
   publish: false,
   publishAt: faker.date.past,
+})
+
+factory.define('portfolio', Portfolio, {
+  publish: false,
+  forecast: {
+    balanced: [],
+    growth: [],
+    aggressive: []
+  },
+  user: factory.assoc('user', '_id')
 })
 
 export default factory

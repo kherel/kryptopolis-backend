@@ -19,6 +19,7 @@
     "db:migration": "migrate-mongo -f ./.mongo-migrate.js up",
     "w:db:migration": "migrate-mongo ./.mongo-migrate.js && up",
     "db:seed": "node --require babel-register ./db/seeds.js",
+    "db:seedp": "node --require babel-register ./db/portfoliosSeeds.js",
     "db:drop": "node --require babel-register ./db/drop.js",
     "db:backup": "node --require babel-register ./db/mongo/backup.js",
     "db:restore": "node --require babel-register ./db/mongo/restore.js",
