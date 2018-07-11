@@ -24,5 +24,6 @@ export const News = mongoose.model('news');
 export const Video = mongoose.model('videos');
 export const Ticker = mongoose.model('tickers');
 export const Portfolio = mongoose.model('portfolios');
+export const Hot = mongoose.model('hot');
 
 export default mongoose;

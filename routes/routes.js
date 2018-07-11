@@ -11,6 +11,7 @@ import IcoesController from '../app/controllers/icoes'
 import ArticlesController from '../app/controllers/articles'
 import PortfoliosController from '../app/controllers/portfolios'
 import NewsController from '../app/controllers/news'
+import HotController from '../app/controllers/hot'
 import VideosController from '../app/controllers/videos'
 import TickersController from '../app/controllers/tickers'
 import MeController from '../app/controllers/me'
@@ -73,6 +74,10 @@ export default (app) => {
   app.post('/v1/videos', AuthMiddleware, AbilityMiddleware, VideosController.create)
   app.put('/v1/videos/:id', AuthMiddleware, AbilityMiddleware, VideosController.update)
   app.delete('/v1/videos/:id', AuthMiddleware, AbilityMiddleware, VideosController.delete)
+
+  app.get('/v1/hot', GetUserMiddleware, AbilityMiddleware, HotController.show)
+  app.put('/v1/hot', AuthMiddleware, AbilityMiddleware, HotController.update)
+  app.delete('/v1/hot', AuthMiddleware, AbilityMiddleware, HotController.delete)
 
   app.get('/v1/portfolios', GetUserMiddleware, AbilityMiddleware, PortfoliosController.index)
   app.get('/v1/portfolios/:id', GetUserMiddleware, AbilityMiddleware, PortfoliosController.show)

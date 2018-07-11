@@ -100,6 +100,14 @@ const videoAttributes = [
   "createdAt",
 ]
 
+const hotAttributes = [
+  "news",
+  "video",
+  "article",
+  "updatedAt",
+  "createdAt",
+]
+
 const tickerAttributes = [
   "name",
   "symbol",
@@ -203,6 +211,17 @@ export const newsSerializer = (data, meta = {}) => {
     meta: {
       "total-pages": meta.total,
     },
+  }).serialize(data)
+}
+
+export const hotSerializer = (data, meta = {}) => {
+  return new Serializer('hot', {
+    id: "id",
+    attributes: hotAttributes,
+    keyForAttribute: "camelCase",
+    typeForAttribute: (attribute, record) => {
+      return (record && record.type) ? record.type : attribute
+    }
   }).serialize(data)
 }
 

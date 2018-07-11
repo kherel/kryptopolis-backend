@@ -583,6 +583,32 @@ paths:
         200:
           description: ""
 
+  /hot:
+    get:
+      summary: "show"
+      responses:
+        200:
+          description: ""
+    put:
+      summary: "update"
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/hot'
+      responses:
+        200:
+          description: ""
+    delete:
+      summary: "delete"
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: ""          
+
   /tickers:
     get:
       summary: "index"
@@ -1080,6 +1106,21 @@ components:
             video: "http://url.com/image.jpg"
             publish: false
             publishAt: ""
+
+    hot:
+      properties:
+        news:
+          type: string
+        article:
+          type: string
+        video:
+          type: string
+      example:
+        data:
+          type: "hot"
+          id: "5a28e9eb9f042573d0daea21"
+          attributes:
+            video: "5a28e9eb9f042573d0daea21"          
 
     ticker:
       properties:

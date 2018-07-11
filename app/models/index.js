@@ -5,6 +5,7 @@ import News from "./news"
 import Video from "./videos"
 import Ticker from "./tickers"
 import Portfolio from "./portfolio"
+import Hot from "./hot"
 
 export {
   User,
@@ -13,5 +14,6 @@ export {
   News,
   Video,
   Ticker,
-  Portfolio
+  Portfolio,
+  Hot
 }
