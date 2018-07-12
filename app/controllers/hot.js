@@ -59,9 +59,9 @@ export default {
         return next(new Error("Too many arguments"))
       }
 
-      delete hot.news
-      delete hot.video
-      delete hot.article
+      hot.news = null
+      hot.video = null
+      hot.article = null
 
       hot.set(attributes)
 
@@ -79,16 +79,16 @@ export default {
     const { id } = req.params
 
     try {
-      req.ability.throwUnlessCan('delete', new News)
+      req.ability.throwUnlessCan('delete', new Hot)
 
       let hot = await Hot.findOne().sort('-createdAt')
 
       if (!hot) {
         hot = await Hot.createObject()
       } else {
-        delete hot.news
-        delete hot.video
-        delete hot.article
+        hot.news = null
+        hot.video = null
+        hot.article = null
       }
 
       await hot.save()
