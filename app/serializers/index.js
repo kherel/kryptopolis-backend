@@ -186,7 +186,7 @@ export const icoSerializer = async (data, meta = {}) => {
   }).serialize(data)
 }
 
-export const articleSerializer = (data, meta = {}) => {
+export const articleSerializer = (data, meta = {}, hot = {}) => {
   return new Serializer('article', {
     id: "id",
     attributes: atricleAttributes,
@@ -194,19 +194,29 @@ export const articleSerializer = (data, meta = {}) => {
     typeForAttribute: (attribute, record) => {
       return (record && record.type) ? record.type : attribute
     },
+    dataMeta: {
+      hot: (record, current) => {
+        return hot.article && current._id.toString() == hot.article.toString()
+      }
+    },
     meta: {
       "total-pages": meta.total,
     },
   }).serialize(data)
 }
 
-export const newsSerializer = (data, meta = {}) => {
+export const newsSerializer = (data, meta = {}, hot = {}) => {
   return new Serializer('news', {
     id: "id",
     attributes: newsAttributes,
     keyForAttribute: "camelCase",
     typeForAttribute: (attribute, record) => {
       return (record && record.type) ? record.type : attribute
+    },
+    dataMeta: {
+      hot: (record, current) => {
+        return hot.news && current._id.toString() == hot.news.toString()
+      }
     },
     meta: {
       "total-pages": meta.total,
@@ -239,13 +249,18 @@ export const portfolioSerializer = (data, meta = {}) => {
   }).serialize(data)
 }
 
-export const videoSerializer = (data, meta = {}) => {
+export const videoSerializer = (data, meta = {}, hot = {}) => {
   return new Serializer('video', {
     id: "id",
     attributes: videoAttributes,
     keyForAttribute: "camelCase",
     typeForAttribute: (attribute, record) => {
       return (record && record.type) ? record.type : attribute
+    },
+    dataMeta: {
+      hot: (record, current) => {
+        return hot.video && current._id.toString() == hot.video.toString()
+      }
     },
     meta: {
       "total-pages": meta.total,

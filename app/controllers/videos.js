@@ -1,5 +1,5 @@
 import { merge, pick } from "ramda"
-import { Video } from "../../init/mongoose"
+import { Video, Hot } from "../../init/mongoose"
 import { videoSerializer } from "../serializers"
 import { getAttributes, getOptionsFind } from "../services/params"
 
@@ -24,7 +24,9 @@ export default {
         populate("user", "name")
       let total = await Video.count()
 
-      let response = videoSerializer(videos, { total: total })
+      const hot = await Hot.findOne().sort('-createdAt')
+
+      let response = videoSerializer(videos, { total: total }, hot)
 
       res.status(200).json(response)
     } catch(err) {
@@ -45,7 +47,9 @@ export default {
         return next(new Error("forbidden"))
       }
 
-      const response = videoSerializer(video)
+      const hot = await Hot.findOne().sort('-createdAt')
+
+      const response = videoSerializer(video, {}, hot)
 
       res.status(200).json(response)
     } catch(err) {
@@ -82,7 +86,10 @@ export default {
       video.set(filterAttributes(getAttributes(req)))
 
       await video.save()
-      let response = videoSerializer(video)
+
+      const hot = await Hot.findOne().sort('-createdAt')
+
+      let response = videoSerializer(video, {}, hot)
 
       res.status(200).json(response)
     } catch(err) {

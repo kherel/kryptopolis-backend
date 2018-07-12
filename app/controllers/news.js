@@ -1,5 +1,5 @@
 import { merge, pick } from "ramda"
-import { News } from "../../init/mongoose"
+import { News, Hot } from "../../init/mongoose"
 import { newsSerializer } from "../serializers"
 import { getAttributes, getOptionsFind } from "../services/params"
 
@@ -28,7 +28,9 @@ export default {
         populate("user", "name")
       let total = await News.count(options)
 
-      let response = newsSerializer(news, { total: total })
+      const hot = await Hot.findOne().sort('-createdAt')
+
+      let response = newsSerializer(news, { total: total }, hot)
 
       res.status(200).json(response)
     } catch(err) {
@@ -49,7 +51,9 @@ export default {
           return next(new Error("forbidden"))
       }
 
-      const response = newsSerializer(news)
+      const hot = await Hot.findOne().sort('-createdAt')
+
+      const response = newsSerializer(news, {}, hot)
 
       res.status(200).json(response)
     } catch(err) {
@@ -86,7 +90,10 @@ export default {
       news.set(filterAttributes(getAttributes(req)))
 
       await news.save()
-      let response = newsSerializer(news)
+
+      const hot = await Hot.findOne().sort('-createdAt')
+
+      let response = newsSerializer(news, {}, hot)
 
       res.status(200).json(response)
     } catch(err) {

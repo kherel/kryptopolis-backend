@@ -1,5 +1,5 @@
 import { merge, pick } from "ramda"
-import { Article } from "../../init/mongoose"
+import { Article, Hot } from "../../init/mongoose"
 import { articleSerializer } from "../serializers"
 import { getAttributes, getOptionsFind } from "../services/params"
 
@@ -23,7 +23,9 @@ export default {
         populate("user", "name")
       let total = await Article.count()
 
-      let response = articleSerializer(articles, { total: total })
+      const hot = await Hot.findOne().sort('-createdAt')
+
+      let response = articleSerializer(articles, { total: total }, hot)
 
       res.status(200).json(response)
     } catch(err) {
@@ -37,7 +39,10 @@ export default {
     try {
       const article = await Article.findById(id).
         populate("user", "name")
-      const response = articleSerializer(article)
+
+      const hot = await Hot.findOne().sort('-createdAt')
+
+      const response = articleSerializer(article, {}, hot)
 
       res.status(200).json(response)
     } catch(err) {
@@ -74,7 +79,10 @@ export default {
       article.set(filterAttributes(getAttributes(req)))
 
       await article.save()
-      let response = articleSerializer(article)
+
+      const hot = await Hot.findOne().sort('-createdAt')
+
+      let response = articleSerializer(article, {}, hot)
 
       res.status(200).json(response)
     } catch(err) {
