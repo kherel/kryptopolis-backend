@@ -6,7 +6,11 @@ mongoose.Promise = global.Promise;
 settings.isEnvTest ? null : mongoose.set('debug', true);
 
 export const connectDb = async () => {
-  await mongoose.connect(settings.dbUrl, { useMongoClient: true });
+  await mongoose.connect(settings.dbUrl, {
+    useMongoClient: true,
+    server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
+    replset: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }
+  });
 }
 
 export const dropDb = async () => {
